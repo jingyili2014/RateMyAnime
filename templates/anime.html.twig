@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <title>RateMyAnime Single Page</title>
+
+    <style>
+      body {
+        background-color: #eee;
+      }
+
+      .theme-green-bg {
+        background-color: #2d8659;
+      }
+
+      .theme-green-color {
+        color: #2d8659;
+      }
+
+      .cate-menu .active {
+        color: #2d8659;
+        border-bottom: 2px solid #2d8659;
+      }
+
+      .nav-pills .pill-1 .nav-link:not(.active) {
+        background-color: rgba(0,0,0,0);
+        color: #2d8659;
+      }
+
+      .nav-pills .pill-1 .nav-link {
+        background-color: #2d8659;
+        color: white;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-expand-lg theme-green-bg">
+    <a class="navbar-brand text-white" href="/anime/">{{name}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mr-5">
+        <li class="nav-item mr-5">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control rounded-0 border-white" type="search" placeholder="Search.." aria-label="Search">
+            <button class="btn my-2 my-sm-0 text-white rounded-0 theme-green-bg" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </li>
+        <li class="nav-item active mr-3">
+          <a class="nav-link text-white" href="#">Anime A-Z</a>
+        </li>
+
+        <li class="nav-item mr-3">
+          <a class="nav-link text-white" href="/anime/rank">Ranking</a>
+        </li>
+
+        <li class="nav-item mr-3">
+          <a class="nav-link text-white" href="#">Event</a>
+        </li>
+
+        <li class="nav-item mr-3">
+          <a class="nav-link text-white" href="#">Comment</a>
+        </li>
+
+        <li class="nav-item ml-5">
+          <a class="nav-link text-white" href="#">
+            <i class="fas fa-user"></i>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0 bg-white" style="box-shadow: 3px 3px 5px 6px #aaa;">
+    <div class="row">
+      <div class="col-8" style="font-size: 0">
+        <iframe width="100%" height="450" src="{{anime.youtube_url}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="col-4">
+        <div class="pt-5 px-4">
+          <h2>{{anime.name}}</h2>
+          <br>
+          <p class="font-weight-bold text-success" style="font-size: 1.5rem">
+            {{ (anime.total_score / anime.score_num) | number_format(1, '.', ',')}}
+          </p>
+          <p class="font-weight-bold">Written by 
+            <span class="font-weight-normal font-italic">{{anime.author}}</span>
+          </p>
+          <p class="font-weight-bold">Directed by 
+            <span class="font-weight-normal font-italic">{{anime.director}}</span>
+          </p>
+          <p class="font-weight-bold">Studio
+            <span class="font-weight-normal font-italic">{{anime.production}}</span>
+          </p>
+          <p class="font-weight-bold">Original Run
+            <span class="font-weight-normal font-italic">{{anime.release}}</span>
+          </p>
+          <p class="font-weight-bold">Episodes 
+            <span class="font-weight-normal font-italic">{{anime.episode}}</span>
+          </p>
+          <p class="font-weight-bold">Genre 
+            <span class="font-weight-normal font-italic">
+              {% set genres = anime.genre | split(',') %}
+              {% for ge in genres %}
+                <a class="mr-2" href="/anime/genre/get/{{ ge }}">{{ categories[ge] }}</a>
+              {% endfor %}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- sub menu 1-->
+  <div class="container-fluid my-5">
+    <div class="row my-3 mx-4 cate-menu">
+      <div class="col-12">
+       <div class="container-fluid">
+        <div class="row text-center" style="font-size: 1.1rem; border-bottom: 0.5px solid #ccc; line-height: 2.4rem">
+          <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item pill-1">
+              <a class="nav-link active" id="pills-synopsis-tab" data-toggle="pill" href="#pills-synopsis" role="tab" aria-controls="pills-synopsis" aria-selected="true">Synopsis</a>
+            </li>
+            <li class="nav-item pill-1">
+              <a class="nav-link" id="pills-statistics-tab" data-toggle="pill" href="#pills-statistics" role="tab" aria-controls="pills-statistics" aria-selected="false">Statistics</a>
+            </li>
+            <li class="nav-item pill-1">
+              <a class="nav-link" id="pills-background-tab" data-toggle="pill" href="#pills-background" role="tab" aria-controls="pills-background" aria-selected="false">Background</a>
+            </li>
+            <li class="nav-item pill-1">
+              <a class="nav-link" id="pills-charactors-tab" data-toggle="pill" href="#pills-charactors" role="tab" aria-controls="pills-charactors" aria-selected="false">Charactors & Voice Actors</a>
+            </li>
+            <li class="nav-item pill-1">
+              <a class="nav-link" id="pills-related-tab" data-toggle="pill" href="#pills-related" role="tab" aria-controls="pills-related" aria-selected="false">Related Anime</a>
+            </li>
+          </ul>
+        </div>  
+       </div>
+      </div>
+    </div>
+
+    <div class="row mx-4 my-5 px-4 text-secondary">
+      <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-synopsis" role="tabpanel" aria-labelledby="pills-synopsis-tab"><h6 class="mb-4 theme-green-color">Synopsis</h6>{{anime.description}}</div>
+
+          <div class="tab-pane fade" id="pills-statistics" role="tabpanel" aria-labelledby="pills-statistics-tab"><h6 class="mb-4 theme-green-color">Statistics</h6>
+            <p class="font-weight-bold mt-5">Completed:  
+              <p class="font-weight-normal">{{anime.stats_watched}}</p>
+            </p>
+            <p class="font-weight-bold">Watching:  
+              <p class="font-weight-normal">{{anime.stats_watching}}</p>
+            </p>
+            <p class="font-weight-bold">Droped:  
+              <p class="font-weight-normal">{{anime.stats_droped}}</p>
+            </p>
+            <p class="font-weight-bold">Plan to Watch:  
+              <p class="font-weight-normal">{{anime.stats_plan_to_watch}}</p>
+            </p>
+            <p class="font-weight-bold">Total:  
+              <p class="font-weight-normal">{{anime.stats_watched + anime.stats_watching + anime.stats_droped + anime.stats_plan_to_watch}}</p>
+            </p>
+          </div>
+
+          <div class="tab-pane fade" id="pills-background" role="tabpanel" aria-labelledby="pills-background-tab"><h6 class="mb-4 theme-green-color">Background</h6>{{anime.background}}</div>
+
+          <div class="tab-pane fade" id="pills-charactors" role="tabpanel" aria-labelledby="pills-charactors-tab"><h6 class="mb-4 theme-green-color">Charactors & Voice Actors</h6>
+            <p class="font-weight-bold mt-5">Main Charactors: </p>{{anime.charactors}} <br><br>
+            <p class="font-weight-bold">Main Voice Actors: </p>{{anime.voice_actors}}
+          </div>
+
+          <div class="tab-pane fade" id="pills-related" role="tabpanel" aria-labelledby="pills-related-tab"><h6 class="mb-4 theme-green-color">Related Anime</h6></div>
+        </div>  
+    </div>
+         
+  </div>
+
+
+
+<!-- sub menu 2-->
+  <div class="container-fluid my-5 pt-5">
+    <div class="row my-3 mx-4 cate-menu">
+      <div class="col-12">
+       <div class="container-fluid">
+        <div class="row text-center" style="font-size: 1.1rem; border-bottom: 0.5px solid #ccc; line-height: 2.4rem">
+          <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item pill-1">
+              <a class="nav-link active" id="pills-Comments-tab" data-toggle="pill" href="#pills-Comments" role="tab" aria-controls="pills-Comments" aria-selected="true">Comments</a>
+            </li>
+          </ul>
+        </div>  
+       </div>
+      </div>
+    </div>
+
+  </div>
+  
+
+
+    <div class="row">
+      <div class="form-inline my-5 mx-auto">
+        <textarea id="comment_input" class="form-control rounded border-success" placeholder="Add your comments ..." rows="5" style="width: 50vw"></textarea>
+        <button id="comment_submit" class="btn btn-secondary ml-3 px-4 text-white rounded theme-green-bg border-0" type="submit" style="align-self: flex-end" data-id="{{anime.id}}">
+          Submit
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4"></div>
+        <div id="result_info"></div>
+    </div>
+
+
+    <div class="row">
+      <div class="container" id="all-comments">
+        {% if comments == false %}         
+          <div class="row my-4" style="font-size: 0.8rem; color: green;">
+            No comments for this anime yet.
+          </div>
+        {% else %}
+          {% for comment in comments %}
+            <div class="row my-4">
+              <div class="col-1">
+                <i class="fas fa-user fa-2x text-success"></i>
+              </div>
+              <div class="col-11 text-justify">
+                <h5 style="font-size: 1.1rem">Username</h5>
+                <p style="font-size: 0.8rem; color: green;">{{comment.content}}</p>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small theme-green-bg darken-8 text-center">
+
+  <div class="container-fluid">
+    <!-- Grid row-->
+    <div class="row mt-5">
+      <!-- Grid column -->
+      <div class="col-md-12 py-5">
+        <div class="mb-5 small">
+
+          <a class="fb-ic text-white text-decoration-none" href="#">
+            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 fa-2x"> </i>
+          </a>
+          <a class="tw-ic text-white text-decoration-none" href="#">
+            <i class="fab fa-twitter fa-lg white-text mr-md-5 fa-2x"> </i>
+          </a>
+          <a class="gplus-ic text-white text-decoration-none" href="#">
+            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 fa-2x"> </i>
+          </a>
+          <a class="li-ic text-white text-decoration-none" href="#">
+            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 fa-2x"> </i>
+          </a>
+          <a class="ins-ic text-white text-decoration-none" href="#">
+            <i class="fab fa-instagram fa-lg white-text mr-md-5 fa-2x"> </i>
+          </a>
+          <a class="pin-ic text-white text-decoration-none" href="#">
+            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-copyright text-center py-3 small">Copyright © 2018 All Rights Reserved.</div>
+
+</footer>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      $('#comment_submit').on('click', function() {
+        var anime_id = ($(this).data('id'));
+        var content = $('#comment_input').val();
+        console.log(content);
+        $.post(
+          '/anime/comment/submit',
+          {
+            "anime_id": anime_id,
+            "content": content
+          },
+          function(data) {
+            if (data.code == 200) {
+              $('#result_info').html(
+                '<div class="alert alert-success" role="alert">' + data.message + '</div>'
+                );
+              $('#all-comments').prepend(
+                `<div class="row my-4">
+                  <div class="col-1">
+                    <i class="fas fa-user fa-2x text-success"></i>
+                  </div>
+                  <div class="col-11 text-justify">
+                    <h5 style="font-size: 1.1rem">Username</h5>
+                    <p style="font-size: 0.8rem; color: green;">` + content + `</p>
+                  </div>
+                </div>`
+              );
+            } else {
+              $('#result_info').html(
+                '<div class="alert alert-danger" role="alert">' + data.message + '</div>'
+              );
+            }
+          },
+          "json"
+          );
+      });
+    </script>
+  </body>
+</html>
