@@ -41,4 +41,5 @@ class anime {
 			echo $e->getMessage();
 		}
 			}
+
 }

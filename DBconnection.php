@@ -83,9 +83,6 @@ class DBconnection
 	
 }
 
-// $db = new DBconnection();
-// var_dump($db->insertComment(4, '321'));
-
 
 
 ?>
