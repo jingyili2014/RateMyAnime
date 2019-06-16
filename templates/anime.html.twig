@@ -44,6 +44,13 @@
         font-size: 1.2rem;
       }
 
+      .sub-menu {
+        font-size: 1.1rem; 
+        border-bottom: 0.5px solid #ccc; 
+        line-height: 2.4rem;
+      }
+
+
     </style>
   </head>
 
@@ -106,15 +113,66 @@
             <span class="font-weight-bold text-success">
               {{ (anime.total_score / anime.score_num) | number_format(1, '.', ',')}}
             </span>
-            {% if (anime.total_score % anime.score_num) != 0}
-              <span class="rating pl-1">
-                <i class="fas fa-star-half-alt"></i>
-              </span>
-            {% else %}
-              <span class="rating pl-1">
-                <i class="fas fa-star"></i>
-              </span>
-            {% endif %}
+            <div>
+              {% if (anime.total_score // anime.score_num) == 5 %}
+                <span class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </span>
+              {% elseif (anime.total_score // anime.score_num) == 4 %}
+                <span class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </span>
+              {% elseif (anime.total_score // anime.score_num) == 3 %}
+                <span class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </span>
+              {% elseif (anime.total_score // anime.score_num) == 2 %}
+                <span class="rating">
+                  <i class="fas fa-star"></i>
+                </span>
+              {% else %}
+                <span></span>
+              {% endif %}
+
+              {% if (anime.total_score % anime.score_num) != 0%}
+                <span class="rating">
+                  <i class="fas fa-star-half-alt"></i>
+                </span>
+              {% else %}
+                <span class="rating">
+                  <i class="fas fa-star"></i>
+                </span>
+              {% endif %}
+
+              {% if (anime.total_score // anime.score_num) == 5 %}
+                <span class="rating">
+                  <i class="far fa-star"></i>
+                </span>
+              {% elseif (anime.total_score // anime.score_num) == 4 %}
+                <span class="rating">
+                  <i class="far fa-star"></i>
+                </span>
+              {% elseif (anime.total_score // anime.score_num) == 3 %}
+                <span class="rating">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              {% elseif (anime.total_score // anime.score_num) == 2 %}
+                <span class="rating">
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              {% else %}
+                <span></span>
+              {% endif %}
+            </div>
           </p>
 
           <p class="font-weight-bold">Written by 
@@ -143,40 +201,6 @@
         </div>
       </div>
 
-
-
-      <!-- <div class="col-4">
-        <div class="pt-5 px-4">
-          <h2>{{anime.name}}</h2>
-          <br>
-          <p class="font-weight-bold text-success" style="font-size: 1.5rem">
-            {{ (anime.total_score / anime.score_num) | number_format(1, '.', ',')}}
-          </p>
-          <p class="font-weight-bold">Written by 
-            <span class="font-weight-normal font-italic">{{anime.author}}</span>
-          </p>
-          <p class="font-weight-bold">Directed by 
-            <span class="font-weight-normal font-italic">{{anime.director}}</span>
-          </p>
-          <p class="font-weight-bold">Studio
-            <span class="font-weight-normal font-italic">{{anime.production}}</span>
-          </p>
-          <p class="font-weight-bold">Original Run
-            <span class="font-weight-normal font-italic">{{anime.release}}</span>
-          </p>
-          <p class="font-weight-bold">Episodes 
-            <span class="font-weight-normal font-italic">{{anime.episode}}</span>
-          </p>
-          <p class="font-weight-bold">Genre 
-            <span class="font-weight-normal font-italic">
-              {% set genres = anime.genre | split(',') %}
-              {% for ge in genres %}
-                <a class="mr-2" href="/anime/genre/get/{{ ge }}">{{ categories[ge] }}</a>
-              {% endfor %}
-            </span>
-          </p>
-        </div> -->
-      </div>
     </div>
   </div>
 
@@ -186,7 +210,7 @@
     <div class="row my-3 mx-4 cate-menu">
       <div class="col-12">
        <div class="container-fluid">
-        <div class="row text-center" style="font-size: 1.1rem; border-bottom: 0.5px solid #ccc; line-height: 2.4rem">
+        <div class="row text-center sub-menu">
           <ul class="nav nav-pills" id="pills-tab" role="tablist">
             <li class="nav-item pill-1">
               <a class="nav-link active" id="pills-synopsis-tab" data-toggle="pill" href="#pills-synopsis" role="tab" aria-controls="pills-synopsis" aria-selected="true">Synopsis</a>
@@ -211,9 +235,11 @@
 
     <div class="row mx-4 my-5 px-4 text-secondary">
       <div class="tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-synopsis" role="tabpanel" aria-labelledby="pills-synopsis-tab"><h6 class="mb-4 theme-green-color">Synopsis</h6>{{anime.description}}</div>
+          <div class="tab-pane fade show active" id="pills-synopsis" role="tabpanel" aria-labelledby="pills-synopsis-tab">
+            <h6 class="mb-4 theme-green-color">Synopsis</h6>{{anime.description}}</div>
 
-          <div class="tab-pane fade" id="pills-statistics" role="tabpanel" aria-labelledby="pills-statistics-tab"><h6 class="mb-4 theme-green-color">Statistics</h6>
+          <div class="tab-pane fade" id="pills-statistics" role="tabpanel" aria-labelledby="pills-statistics-tab">
+            <h6 class="mb-4 theme-green-color">Statistics</h6>
             <p class="font-weight-bold mt-5">Completed:  
               <p class="font-weight-normal">{{anime.stats_watched}}</p>
             </p>
@@ -231,14 +257,18 @@
             </p>
           </div>
 
-          <div class="tab-pane fade" id="pills-background" role="tabpanel" aria-labelledby="pills-background-tab"><h6 class="mb-4 theme-green-color">Background</h6>{{anime.background}}</div>
+          <div class="tab-pane fade" id="pills-background" role="tabpanel" aria-labelledby="pills-background-tab">
+            <h6 class="mb-4 theme-green-color">Background</h6>{{anime.background}}</div>
 
-          <div class="tab-pane fade" id="pills-charactors" role="tabpanel" aria-labelledby="pills-charactors-tab"><h6 class="mb-4 theme-green-color">Charactors & Voice Actors</h6>
+          <div class="tab-pane fade" id="pills-charactors" role="tabpanel" aria-labelledby="pills-charactors-tab">
+            <h6 class="mb-4 theme-green-color">Charactors & Voice Actors</h6>
             <p class="font-weight-bold mt-5">Main Charactors: </p>{{anime.charactors}} <br><br>
             <p class="font-weight-bold">Main Voice Actors: </p>{{anime.voice_actors}}
           </div>
 
-          <div class="tab-pane fade" id="pills-related" role="tabpanel" aria-labelledby="pills-related-tab"><h6 class="mb-4 theme-green-color">Related Anime</h6></div>
+          <div class="tab-pane fade" id="pills-related" role="tabpanel" aria-labelledby="pills-related-tab">
+            <h6 class="mb-4 theme-green-color">Related Anime</h6>
+          </div>
         </div>  
     </div>
          
