@@ -14,6 +14,7 @@
     <style>
       body {
         background-color: #eee;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
       }
 
       .theme-green-bg {
@@ -72,13 +73,15 @@
   <body>
 
   <nav class="navbar navbar-expand-lg navbar-light theme-green-bg">
-    <a class="navbar-brand text-white" href="/anime/">{{name}}</a>
+    <a class="navbar-brand text-white" href="/anime/">
+      <i class="fas fa-lg fa-paw text-white pl-3 pr-2"></i>{{name}}
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto mr-0">
+      <ul class="navbar-nav ml-auto mr-2">
         <li class="nav-item active mr-3">
           <a class="nav-link text-white" href="#">Anime A-Z</a>
         </li>
@@ -100,10 +103,7 @@
           <a href="./logout">
             <i class="fas fa-user mr-3"></i>Logout
           </a>
-          <span class="text-white ml-3">Hello {{username}}</span>
-          <span class="user-photo">
-            <img src="./images/user1.png" width="30">
-          </span>
+          <span class="text-white ml-3"><i class="fas fa-paw text-white"></i> {{username}}</span>
           {% else %}
           <a href="./login">
             <i class="fas fa-user mr-3"></i>Login

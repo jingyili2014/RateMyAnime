@@ -26,7 +26,7 @@ class login {
 				$_SESSION['userid'] = $result['0']['id'];
 				header('location:/anime');
 			} else {
-				echo 'Login failed';
+				echo '<div class="alert alert-danger" role="alert">Login Failed</div>';
 			}
 		}
 
@@ -45,11 +45,11 @@ class login {
 			$num = mysqli_num_rows($result);
 
 			if ($num == 1) {
-				echo "Username Already Taken";
+				echo '<div class="alert alert-danger" role="alert">Username Already Taken</div>';
 			} else {
 				$register = "INSERT INTO users(username, password) VALUES ('$username', '$password')";
 				mysqli_query($connect, $register);
-				echo "Registration Successful";
+				echo '<div class="alert alert-success" role="alert">Registration Successful Please Login</div>';
 			}
 		}
 

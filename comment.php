@@ -35,7 +35,7 @@ class comment {
 		} else {
 			$message = array(
 				'code' => 400,
-				'message' => 'Please login first'
+				'message' => 'Click me to login first'
 			);
 			echo json_encode($message);
 		}

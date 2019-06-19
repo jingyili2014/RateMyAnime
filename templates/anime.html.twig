@@ -14,6 +14,11 @@
     <style>
       body {
         background-color: #eee;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+      }
+
+      .font-family {
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       .theme-green-bg {
@@ -57,7 +62,9 @@
   <body>
 
   <nav class="navbar navbar-expand-lg theme-green-bg">
-    <a class="navbar-brand text-white" href="/anime/">{{name}}</a>
+    <a class="navbar-brand text-white" href="/anime/">
+      <i class="fas fa-lg fa-paw text-white pl-3 pr-2"></i>{{name}}
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -233,7 +240,7 @@
       </div>
     </div>
 
-    <div class="row mx-4 my-5 px-4 text-secondary">
+    <div class="row mx-4 my-5 px-4 text-secondary font-family">
       <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-synopsis" role="tabpanel" aria-labelledby="pills-synopsis-tab">
             <h6 class="mb-4 theme-green-color">Synopsis</h6>{{anime.description}}</div>
@@ -306,7 +313,7 @@
     </div>
 
     <div class="row">
-      <div class="col-4"></div>
+      <div class="col-md-5 col-12"></div>
         <div id="result_info"></div>
     </div>
 
@@ -321,12 +328,12 @@
           {% for comment in comments %}
             <div class="row my-4">
               <div class="col-1">
-                <i class="fas fa-user fa-2x text-success"></i>
+                <i class="fas fa-2x fa-paw text-dark"></i>
               </div>
               <div class="col-11 text-justify">
-                <h5 style="font-size: 1.1rem">{{comment.uname}}</h5>
-                <h6>{{comment.date}}</h6>
-                <p style="font-size: 0.8rem; color: green;">{{comment.content}}</p>
+                <h5 style="font-size: 1.2rem;">{{comment.uname}}</h5>
+                <h6 style="font-size: 0.7rem;">{{comment.date}}</h6>
+                <p style="font-size: 0.8rem; font-family: Arial, Helvetica, sans-serif; color: green;">{{comment.content}}</p>
               </div>
             </div>
           {% endfor %}
@@ -410,18 +417,18 @@
               $('#all-comments').prepend(
                 `<div class="row my-4">
                   <div class="col-1">
-                    <i class="fas fa-user fa-2x text-success"></i>
+                    <i class="fas fa-2x fa-paw text-dark"></i>
                   </div>
                   <div class="col-11 text-justify">
-                    <h5 style="font-size: 1.1rem">`+data.uname+`</h5>
-                    <h6>`+today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+`</h6>
-                    <p style="font-size: 0.8rem; color: green;">` + content + `</p>
+                    <h5 style="font-size: 1.2rem">`+data.uname+`</h5>
+                    <h6 style="font-size: 0.7rem">`+today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+`</h6>
+                    <p style="font-size: 0.8rem; font-family: Arial, Helvetica, sans-serif; color: green;">` + content + `</p>
                   </div>
                 </div>`
               );
             } else {
               $('#result_info').html(
-                '<div class="alert alert-danger" role="alert">' + data.message + '</div>'
+                '<a class="text-white text-decoration-none" href="/anime/login"><div class="alert alert-danger" role="alert">' + data.message + '</div></a>'
               );
             }
           },
