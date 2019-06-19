@@ -67,7 +67,7 @@
         <div class="row login-box mx-auto my-5">
             <div class="col-md-12 mx-auto my-5">
                 <h2 class="text-center">LOGIN</h2>
-                <form action="validation.php">
+                <form action="/anime/login" method="POST">
                     <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="user" class="form-control" required>
@@ -85,14 +85,14 @@
 
             <div id="register-dropdown">
                 <h2 class="mt-5 text-center">REGISTER</h2>
-                <form action="Registration.php">
+                <form action="/anime/login" method="POST">
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="user" class="form-control" required>
+                        <input type="text" name="user1" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" name="pass" class="form-control" required>
+                        <input type="password" name="pass1" class="form-control" required>
                     </div>
                     <button type="submit" class="btn register-btn mt-3">Submit</button>
                 </form>

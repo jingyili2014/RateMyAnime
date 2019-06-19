@@ -2,7 +2,7 @@
 
 require_once('./vendor/autoload.php');
 require_once('./DBconnection.php');
-
+session_start();
 $loader = new \Twig\Loader\FilesystemLoader('./templates');
 $twig = new \Twig\Environment($loader
 	// , ['cache' => './compilation_cache',]
@@ -11,8 +11,7 @@ $twig = new \Twig\Environment($loader
 
 $db_conn = new DBconnection();
 
-
-if (array_key_exists('url', $_GET)) {
+if (array_key_exists('url', $_GET)&&$_GET['url']) {
 	$url = $_GET['url'];
 	$p_array = explode('/', $url);
 	if (!file_exists($p_array[0] . '.php')) {
@@ -52,6 +51,11 @@ foreach ($categories as $category) {
 	$new_category += array($category['id'] => $category['name']);
 }
 
+$username = '';
+if ($_SESSION && array_key_exists('username', $_SESSION)) {
+	$username = $_SESSION['username'];
+}
+
 try {
 	echo $twig->render(
 		'index.html.twig', 
@@ -59,7 +63,8 @@ try {
 			'name' => 'RateMyAnime',
 			'animes' => $animes,
 			'categories' => $new_category,
-			'c_id' => 0 
+			'c_id' => 0,
+			'username' => $username 
 			)
 	);	
 }

@@ -2,7 +2,7 @@
 
 session_start();
 
-header('location:login.html');
+// header('location:login.html');
 
 $connect = mysqli_connect('localhost', 'root', 'root');
 

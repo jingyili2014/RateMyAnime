@@ -55,6 +55,19 @@ class DBconnection
 		return $result;
 	}
 
+	public function getUserByName($username, $password) {
+		$stmt = $this->getConnInstant()->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+		$stmt->execute(
+			array(
+				':username' => $username,
+				':password' => $password
+			)
+		);
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $result;
+	}
+
 	public function getCommentById($id) {
 		$stmt = $this->getConnInstant()->prepare('SELECT * FROM comments WHERE anime_id = :id ORDER BY date DESC');
 		$stmt->execute(
@@ -68,13 +81,14 @@ class DBconnection
 	}
 
 
-	public function insertComment($anime_id, $content) {
-		$stmt = $this->getConnInstant()->prepare('INSERT INTO comments(anime_id, date, content) VALUES (:anime_id, :date, :content)');
+	public function insertComment($anime_id, $content, $uname) {
+		$stmt = $this->getConnInstant()->prepare('INSERT INTO comments(anime_id, date, content,uname) VALUES (:anime_id, :date, :content,:uname)');
 		$result = $stmt->execute(
 			array(
 				':anime_id' => $anime_id,
 				':date' => date('y-m-d h:i:s'),
-				'content' => $content
+				'content' => $content,
+				'uname' => $uname
 			)
 		);
 		return $result;

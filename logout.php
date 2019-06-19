@@ -1,6 +1,18 @@
 <?php
 
-session_start();
-session_destroy();
+class logout {
+	private $conn;
+	private $twig;
 
-header('location: index.php');
+	public function __construct($conn, $twig) {
+		$this->conn = $conn;
+		$this->twig =$twig;
+	}
+
+	public function indexMethod() {
+		session_start();
+		session_destroy();
+
+		header('location:/anime');
+	}
+}

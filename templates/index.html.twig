@@ -48,6 +48,20 @@
         text-decoration: none;
       }
 
+      .login-logout a {
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 0.3rem 1.5rem;
+        color: white;
+      }
+
+      .login-logout a:hover {
+        background-color: white;
+        color: #2d8659;
+        text-decoration: none;
+      }
+
+
 
 
 
@@ -64,7 +78,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto mr-5">
+      <ul class="navbar-nav ml-auto mr-0">
         <li class="nav-item active mr-3">
           <a class="nav-link text-white" href="#">Anime A-Z</a>
         </li>
@@ -81,10 +95,20 @@
           <a class="nav-link text-decoration-none" style="color:white" href="#">Comment</a>
         </li>
 
-        <li class="nav-item ml-5">
-          <a class="nav-link text-white" href="./login">
-            <i class="fas fa-user"></i>
+        <li class="nav-item ml-3 login-logout mt-2">
+          {% if username %}
+          <a href="./logout">
+            <i class="fas fa-user mr-3"></i>Logout
           </a>
+          <span class="text-white ml-3">Hello {{username}}</span>
+          <span class="user-photo">
+            <img src="./images/user1.png" width="30">
+          </span>
+          {% else %}
+          <a href="./login">
+            <i class="fas fa-user mr-3"></i>Login
+          </a>
+          {% endif %}
         </li>
 
       </ul>

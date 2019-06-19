@@ -10,21 +10,32 @@ class comment {
 	}
 
 	public function submitMethod() {
-		$anime_id = $_POST['anime_id'];
-		$content = $_POST['content'];
-		$result = $this->conn->insertComment($anime_id, $content);
 		header("Access-Control-Allow-Origin");
 		header("Content-Type-application/json;charset=UTF-8");
-		if ($result) {
-			$message = array(
-				'code' => 200,
-				'message' => 'Add comment sucessfully.',
-			);
-			echo json_encode($message);
+		if (array_key_exists('username', $_SESSION)) {
+			$anime_id = $_POST['anime_id'];
+			$content = $_POST['content'];
+			$uname = $_SESSION['username'];
+			$result = $this->conn->insertComment($anime_id, $content, $uname);
+			
+			if ($result) {
+				$message = array(
+					'code' => 200,
+					'message' => 'Add comment sucessfully.',
+					'uname' => $uname
+				);
+				echo json_encode($message);
+			} else {
+				$message = array(
+					'code' => 400,
+					'message' => 'Add comment failed. Please try again.'
+				);
+				echo json_encode($message);
+			}
 		} else {
 			$message = array(
 				'code' => 400,
-				'message' => 'Add comment failed. Please try again.'
+				'message' => 'Please login first'
 			);
 			echo json_encode($message);
 		}

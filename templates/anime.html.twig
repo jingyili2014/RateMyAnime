@@ -88,11 +88,11 @@
           <a class="nav-link text-white" href="#">Comment</a>
         </li>
 
-        <li class="nav-item ml-5">
+<!--         <li class="nav-item ml-5">
           <a class="nav-link text-white" href="#">
             <i class="fas fa-user"></i>
           </a>
-        </li>
+        </li> -->
 
       </ul>
     </div>
@@ -324,7 +324,8 @@
                 <i class="fas fa-user fa-2x text-success"></i>
               </div>
               <div class="col-11 text-justify">
-                <h5 style="font-size: 1.1rem">Username</h5>
+                <h5 style="font-size: 1.1rem">{{comment.uname}}</h5>
+                <h6>{{comment.date}}</h6>
                 <p style="font-size: 0.8rem; color: green;">{{comment.content}}</p>
               </div>
             </div>
@@ -405,13 +406,15 @@
               $('#result_info').html(
                 '<div class="alert alert-success" role="alert">' + data.message + '</div>'
                 );
+              var today = new Date();
               $('#all-comments').prepend(
                 `<div class="row my-4">
                   <div class="col-1">
                     <i class="fas fa-user fa-2x text-success"></i>
                   </div>
                   <div class="col-11 text-justify">
-                    <h5 style="font-size: 1.1rem">Username</h5>
+                    <h5 style="font-size: 1.1rem">`+data.uname+`</h5>
+                    <h6>`+today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()+`</h6>
                     <p style="font-size: 0.8rem; color: green;">` + content + `</p>
                   </div>
                 </div>`
