@@ -1,87 +1,357 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-
-
-    <title>RateMyAnime Main Page</title>
-    <style>
-      body {
-        background-color: #eee;
-        font-family: "Trebuchet MS", Helvetica, sans-serif;
-      }
-
-      .theme-green-bg {
-        background-color: #2d8659;
-      }
-
-      .theme-green-color {
-        color: #2d8659;
-      }
-
-      .cate-menu .active {
-        color: #2d8659;
-        border-bottom: 2px solid #2d8659;
-      }
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
 
-    </style>
-  </head>
-  
+  <title>RateMyAnime Main Page</title>
+  <style>
+    body {
+      background-color: #eee;
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
 
-  <body>
+    .theme-green-bg {
+      background-color: #2d8659;
+    }
 
+    .theme-green-color {
+      color: #2d8659;
+    }
 
-  <nav class="navbar navbar-expand-lg theme-green-bg">
-    <a class="navbar-brand text-white" href="/anime/">
-      <i class="fas fa-lg fa-paw text-white pl-3 pr-2"></i>{{name}}
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    .bg-color {
+      background-color: white;
+    }
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto mr-5">
-        <li class="nav-item mr-5">
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control rounded-0 border-white" type="search" placeholder="Search.." aria-label="Search">
-            <button class="btn my-2 my-sm-0 text-white rounded-0 theme-green-bg" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </form>
-        </li>
-        <li class="nav-item active mr-3">
-          <a class="nav-link text-white" href="/anime/rank">Ranking</a>
-        </li>
+    .ranking {
+      font-size: 3.5rem;
+    }
 
-        <li class="nav-item mr-3">
-          <a class="nav-link text-white" href="#">News</a>
-        </li>
+    .title-sub {
+      line-height: 0.3rem;
+      color: gray;
+      font-size: 0.9rem;
+    }
 
-        <li class="nav-item mr-3">
-          <a class="nav-link text-white" href="#">About</a>
-        </li>
+    .rating {
+      color: #e6e600;
+    }
 
-        <li class="nav-item mr-3">
-          <a class="nav-link text-white" href="#">Contact</a>
-        </li>
+    .table-font {
+      font-size: 1.2rem;
+      padding: 2.5rem 0 0 0;
+    }
 
-      </ul>
-    </div>
-  </nav>
+    .td-center {
+      text-align: center;
+      vertical-align: middle;
+    }
 
 
-  <div>
-  	<h2><?php echo "hello";?></h2>
+
+
+
+  </style>
+</head>
+
+
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light theme-green-bg">
+  <a class="navbar-brand text-white" href="/anime/">
+    <i class="fas fa-lg fa-paw text-white pl-3 pr-2"></i>{{name}}
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto mr-5">
+      <li class="nav-item mr-5">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control rounded-0 border-white" type="search" placeholder="Search.." aria-label="Search">
+          <button class="btn my-2 my-sm-0 text-white rounded-0 theme-green-bg" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </li>
+      <li class="nav-item active mr-3">
+        <a class="nav-link text-white" href="/anime/rank">Ranking</a>
+      </li>
+
+      <li class="nav-item mr-3">
+        <a class="nav-link text-white" href="#">News</a>
+      </li>
+
+      <li class="nav-item mr-3">
+        <a class="nav-link text-white" href="#">About</a>
+      </li>
+
+      <li class="nav-item mr-3">
+        <a class="nav-link text-white" href="#">Contact</a>
+      </li>
+
+    </ul>
   </div>
+</nav>
+
+<h2 class="mt-5 pt-5 text-center">Top Anime Ranking</h2>
+<div class="px-5 my-5 py-5 td-center">
+  <table class="table table-bordered bg-color">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">RANK</th>
+        <th scope="col">TITLE</th>
+        <th scope="col">SCORE</th>
+        <th scope="col">VIEWS</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th scope="row" class="ranking theme-green-color">1</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a0.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>Attack On Titan</h3>
+                <div class="mt-4 title-sub">
+                  <p>2013-04-07</p>
+                  <p>Episodes 59 + 8 OVA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>4.5</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">3254</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="ranking theme-green-color">2</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a3.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>Steins;Gate</h3>
+                <div class="mt-4 title-sub">
+                  <p>2011-04-06</p>
+                  <p>Episodes 24 + 1 OVA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>4.0</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">1685</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="ranking theme-green-color">3</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a6.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>haikyuu!!</h3>
+                <div class="mt-4 title-sub">
+                  <p>2014-04-06</p>
+                  <p>Episodes 60 + OVA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>4.0</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">1448</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="ranking theme-green-color">4</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a1.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>My Hero Academia</h3>
+                <div class="mt-4 title-sub">
+                  <p>2016-04-03</p>
+                  <p>Episodes 63 + 2 OVA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>3.5</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">2725</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="ranking theme-green-color">5</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a2.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>One Punch Man</h3>
+                <div class="mt-4 title-sub">
+                  <p>2015-10-05</p>
+                  <p>Episodes 17 + 7 OVA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>3.0</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">2044</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="ranking theme-green-color">6</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a4.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>Fate/stay night: UBW</h3>
+                <div class="mt-4 title-sub">
+                  <p>2014-10-06</p>
+                  <p>Episodes 25</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>3.0</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">1200</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="ranking theme-green-color">7</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a77.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>Nozaki-kun</h3>
+                <div class="mt-4 title-sub">
+                  <p>2014-07-07</p>
+                  <p>Episodes 12</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>3.0</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">382</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row" class="ranking theme-green-color">8</th>
+        <td>
+          <div class="container text-left">
+            <div class="row">
+              <div class="offset-md-2 col-md-3">
+                <img src="./images/a55.jpg" width="100">
+              </div>
+              <div class="col-md-6">
+                <h3>Angels of Death</h3>
+                <div class="mt-4 title-sub">
+                  <p>2018-07-06</p>
+                  <p>Episodes 59 + 8 OVA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="table-font">
+            <i class="fas fa-star rating mr-2"></i>
+            <span>2.5</span>
+          </div>
+        </td>
+        <td>
+          <p class="table-font">2135</p>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+ 
 
 
 
@@ -127,9 +397,9 @@
 
 
 <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 </html>

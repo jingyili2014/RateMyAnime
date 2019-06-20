@@ -61,7 +61,7 @@
 
   <body>
 
-  <nav class="navbar navbar-expand-lg theme-green-bg">
+  <nav class="navbar navbar-expand-lg navbar-light theme-green-bg">
     <a class="navbar-brand text-white" href="/anime/">
       <i class="fas fa-lg fa-paw text-white pl-3 pr-2"></i>{{name}}
     </a>
@@ -426,7 +426,7 @@
               );
             } else {
               $('#result_info').html(
-                '<a class="text-white text-decoration-none" href="/anime/login"><div class="alert alert-danger" role="alert">' + data.message + '</div></a>'
+                '<a class="text-white text-decoration-none" href="/anime/login"><div class="alert alert-primary" role="alert">' + data.message + '</div></a>'
               );
             }
           },

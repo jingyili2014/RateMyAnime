@@ -62,6 +62,18 @@
         text-decoration: none;
       }
 
+      .views {
+        display: block;
+      }
+
+      @media screen and (max-width: 650px) {
+        .views {
+          display: none;
+        }
+      }
+
+
+
 
 
 
@@ -133,14 +145,15 @@
 
 <div class="container-fluid p-0 position-relative">
   <img src="/anime/images/banner.jpg" class="w-100" alt="banner">
-  <div class="position-absolute" style="left: 3rem; bottom: 2rem">
+  <div class="position-absolute" style="left: 3vw; bottom: 2vw">
     <h4 class="text-white mb-4">Attack On Titan</h4>
     <p class="text-light"><span class="mr-3">Action, Adventure‎, Fantasy</span> | <span class="ml-1">Release: 2013-04-07</span></p>
     <button class="btn btn-secondary theme-green-bg border-0 px-5">
       <a class="text-decoration-none text-white" href="/anime/anime/get/1">View Info</a>
     </button>
   </div>
-  <div class="position-absolute border border-light p-2 rounded" style="right: 5rem; bottom: 2rem">
+
+  <div class="views position-absolute border border-light p-2 rounded" style="right: 5vw; bottom: 2vw">
     <p>
       <span class="text-white">Rating</span>
       <small class="text-secondary ml-2">Based on 5000 views</small>
@@ -168,7 +181,7 @@
       <div class="container-fluid">
         <div class="row text-center" style="border-bottom: 0.5px solid #ccc; line-height: 2.5rem">
           {% for id, name in categories %}
-            <div class="col-md-1 col-12 p-0 cate-btn  
+            <div class="col-md-2 col-lg-1 col-sm-12 p-0 cate-btn  
             {% if c_id == id %}
               active
             {% endif %} 
