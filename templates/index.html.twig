@@ -83,19 +83,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mr-2">
         <li class="nav-item active mr-3">
-          <a class="nav-link text-white" href="#">Anime A-Z</a>
-        </li>
-
-        <li class="nav-item mr-3">
           <a class="nav-link text-white" href="./rank">Ranking</a>
         </li>
 
         <li class="nav-item mr-3">
-          <a class="nav-link text-white" href="#">Event</a>
+          <a class="nav-link text-white" href="#">News</a>
         </li>
 
         <li class="nav-item mr-3">
-          <a class="nav-link text-decoration-none" style="color:white" href="#">Comment</a>
+          <a class="nav-link text-white" href="#">About</a>
+        </li>
+
+        <li class="nav-item mr-3">
+          <a class="nav-link text-decoration-none" style="color:white" href="#">Contact</a>
         </li>
 
         <li class="nav-item ml-3 login-logout mt-2">
@@ -202,14 +202,7 @@
             </div>
 
             <div class="py-2">
-              {% if (anime.total_score // anime.score_num) == 5 %}
-                <span class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </span>
-              {% elseif (anime.total_score // anime.score_num) == 4 %}
+              {% if (anime.total_score // anime.score_num) == 4 %}
                 <span class="rating">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -228,39 +221,56 @@
                 <span></span>
               {% endif %}
 
-              {% if (anime.total_score % anime.score_num) != 0%}
-                <span class="rating">
-                  <i class="fas fa-star-half-alt"></i>
-                </span>
-              {% else %}
-                <span class="rating">
-                  <i class="fas fa-star"></i>
-                </span>
-              {% endif %}
 
-              {% if (anime.total_score // anime.score_num) == 5 %}
-                <span class="rating">
-                  <i class="far fa-star"></i>
-                </span>
-              {% elseif (anime.total_score // anime.score_num) == 4 %}
-                <span class="rating">
-                  <i class="far fa-star"></i>
-                </span>
+              {% if (anime.total_score // anime.score_num) == 4 %}
+                {% if (anime.total_score % anime.score_num) != 0%}
+                  <span class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </span>
+                {% else %}
+                  <span class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                {% endif %}
+
               {% elseif (anime.total_score // anime.score_num) == 3 %}
-                <span class="rating">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </span>
+                {% if (anime.total_score % anime.score_num) != 0%}
+                  <span class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                {% else %}
+                  <span class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                {% endif %}
+
               {% elseif (anime.total_score // anime.score_num) == 2 %}
-                <span class="rating">
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                  <i class="far fa-star"></i>
-                </span>
+                {% if (anime.total_score % anime.score_num) != 0%}
+                  <span class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                {% else %}
+                  <span class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                {% endif %}
               {% else %}
                 <span></span>
               {% endif %}
             </div>
+
             <h6 class="card-title">{{ anime.name }}<br><br></h6>
             <p class="card-text text-secondary" style="font-size: 0.7rem">
               {% set genres = anime.genre | split(',') %}

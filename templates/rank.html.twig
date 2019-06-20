@@ -15,6 +15,7 @@
     <style>
       body {
         background-color: #eee;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
       }
 
       .theme-green-bg {
@@ -39,34 +40,38 @@
   <body>
 
 
-<nav class="navbar navbar-expand-lg theme-green-bg">
-    <a class="navbar-brand text-white" href="/anime/">{{name}}</a>
+  <nav class="navbar navbar-expand-lg theme-green-bg">
+    <a class="navbar-brand text-white" href="/anime/">
+      <i class="fas fa-lg fa-paw text-white pl-3 pr-2"></i>{{name}}
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mr-5">
+        <li class="nav-item mr-5">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control rounded-0 border-white" type="search" placeholder="Search.." aria-label="Search">
+            <button class="btn my-2 my-sm-0 text-white rounded-0 theme-green-bg" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </li>
         <li class="nav-item active mr-3">
-          <a class="nav-link text-white" href="#">Anime A-Z</a>
+          <a class="nav-link text-white" href="/anime/rank">Ranking</a>
         </li>
 
         <li class="nav-item mr-3">
-          <a class="nav-link text-white" href="">Ranking</a>
+          <a class="nav-link text-white" href="#">News</a>
         </li>
 
         <li class="nav-item mr-3">
-          <a class="nav-link text-white" href="#">Event</a>
+          <a class="nav-link text-white" href="#">About</a>
         </li>
 
         <li class="nav-item mr-3">
-          <a class="nav-link text-decoration-none" style="color:white" href="#">Comment</a>
-        </li>
-
-        <li class="nav-item ml-5">
-          <a class="nav-link text-white" href="#">
-            <i class="fas fa-user"></i>
-          </a>
+          <a class="nav-link text-white" href="#">Contact</a>
         </li>
 
       </ul>
