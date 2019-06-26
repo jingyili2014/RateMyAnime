@@ -44,6 +44,19 @@
         color: white;
       }
 
+      .login-logout a {
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 0.3rem 1.5rem;
+        color: white;
+      }
+
+      .login-logout a:hover {
+        background-color: white;
+        color: #2d8659;
+        text-decoration: none;
+      }
+
       .rating {
         color: #e6e600;
         font-size: 1.2rem;
@@ -93,6 +106,19 @@
 
         <li class="nav-item mr-3">
           <a class="nav-link text-white" href="#">Contact</a>
+        </li>
+
+        <li class="nav-item ml-3 login-logout mt-2">
+          {% if username %}
+          <a href="./logout">
+            <i class="fas fa-user mr-3"></i>Logout
+          </a>
+          <span class="text-white ml-3"><i class="fas fa-paw text-white"></i> {{username}}</span>
+          {% else %}
+          <a href="./login">
+            <i class="fas fa-user mr-3"></i>Login
+          </a>
+          {% endif %}
         </li>
 
       </ul>

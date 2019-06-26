@@ -3,10 +3,12 @@
 class genre {
 	private $conn;
 	private $twig;
+	private $username;
 
-	public function __construct($conn, $twig) {
+	public function __construct($conn, $twig, $username='') {
 		$this->conn = $conn;
 		$this->twig =$twig;
+		$this->username=$username;
 	}
 
 	public function getMethod($cid) {
@@ -27,7 +29,8 @@ class genre {
 					'name' => 'RateMyAnime',
 					'animes' => $animes,
 					'categories' => $new_category,
-					'c_id' => $cid
+					'c_id' => $cid,
+					'username'=>$this->username
 					)
 			);	
 		}

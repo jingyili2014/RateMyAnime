@@ -5,10 +5,12 @@
 class anime {
 	private $conn;
 	private $twig;
+	private $username;
 
-	public function __construct($db_conn, $twig) {
+	public function __construct($db_conn, $twig, $username='') {
 		$this->conn = $db_conn;
 		$this->twig = $twig;
+		$this->username = $username;
 	}
 
 	// public function indexMethod() {
@@ -33,13 +35,14 @@ class anime {
 					'name' => 'RateMyAnime',
 					'anime' => $anime,
 					'categories' => $new_category,
-					'comments' => $comments
+					'comments' => $comments,
+					'username' => $this->username 
 					)
 			);	
 		}
 		catch (Exception $e) {
 			echo $e->getMessage();
 		}
-			}
+	}
 
 }

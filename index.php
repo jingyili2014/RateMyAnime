@@ -7,7 +7,10 @@ $loader = new \Twig\Loader\FilesystemLoader('./templates');
 $twig = new \Twig\Environment($loader
 	// , ['cache' => './compilation_cache',]
 );
-
+$username = '';
+if ($_SESSION && array_key_exists('username', $_SESSION)) {
+	$username = $_SESSION['username'];
+}
 
 $db_conn = new DBconnection();
 
@@ -20,7 +23,7 @@ if (array_key_exists('url', $_GET)&&$_GET['url']) {
 	}
 
 	require_once($p_array[0] . '.php');
-	$handle_obj = new $p_array[0]($db_conn, $twig);
+	$handle_obj = new $p_array[0]($db_conn, $twig, $username);
 	if (array_key_exists(1, $p_array)) {
 		$method = $p_array[1] . 'Method';
 	} else {
@@ -51,10 +54,7 @@ foreach ($categories as $category) {
 	$new_category += array($category['id'] => $category['name']);
 }
 
-$username = '';
-if ($_SESSION && array_key_exists('username', $_SESSION)) {
-	$username = $_SESSION['username'];
-}
+
 
 try {
 	echo $twig->render(
