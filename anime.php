@@ -1,7 +1,5 @@
 <?php
-/**
- * 
- */
+
 class anime {
 	private $conn;
 	private $twig;

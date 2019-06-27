@@ -7,8 +7,8 @@ class rank {
 
 	public function __construct($conn, $twig, $username='') {
 		$this->conn = $conn;
-		$this->twig =$twig;
-		$this->username=$username;
+		$this->twig = $twig;
+		$this->username = $username;
 	}
 
 	public function indexMethod() {

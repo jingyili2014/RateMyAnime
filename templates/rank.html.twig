@@ -67,6 +67,12 @@
       vertical-align: middle;
     }
 
+    .title-link {
+      color: black;
+    }
+
+
+
 
 
 
@@ -113,17 +119,17 @@
       </li>
 
       <li class="nav-item ml-3 login-logout mt-2">
-          {% if username %}
-          <a href="./logout">
-            <i class="fas fa-user mr-3"></i>Logout
-          </a>
-          <span class="text-white ml-3"><i class="fas fa-paw text-white"></i> {{username}}</span>
-          {% else %}
-          <a href="./login">
-            <i class="fas fa-user mr-3"></i>Login
-          </a>
-          {% endif %}
-        </li>
+        {% if username %}
+        <a href="./logout">
+          <i class="fas fa-user mr-3"></i>Logout
+        </a>
+        <span class="text-white ml-3"><i class="fas fa-paw text-white"></i> {{username}}</span>
+        {% else %}
+        <a href="./login">
+          <i class="fas fa-user mr-3"></i>Login
+        </a>
+        {% endif %}
+      </li>
 
     </ul>
   </div>
@@ -154,7 +160,7 @@
                 <img src="/anime/images/{{anime.widget_url}}" width="100">
               </div>
               <div class="col-md-6">
-                <a href="/anime/anime/get/{{anime.id}}"><h3>{{anime.name}}</h3></a>
+                <a href="/anime/anime/get/{{anime.id}}" class="title-link"><h3>{{anime.name}}</h3></a>
                 <div class="mt-4 title-sub">
                   <p>{{anime.release}}</p>
                   <p>{{anime.episode}}</p>
