@@ -5,6 +5,7 @@ class anime {
 	private $twig;
 	private $username;
 
+	// constructor function:
 	public function __construct($db_conn, $twig, $username='') {
 		$this->conn = $db_conn;
 		$this->twig = $twig;
